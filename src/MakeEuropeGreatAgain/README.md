@@ -1,0 +1,1 @@
+To run this script enter up to 10 numbers in the file separated by space and program.
