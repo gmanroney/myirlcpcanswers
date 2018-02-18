@@ -1,1 +1,1 @@
-To run this script enter up to 10 numbers in the file separated by space and program.
+To run this script enter up to 10 numbers in the file separated by space and program. Numbers should be less than 5000 and no more than 10 of them.
