@@ -1,0 +1,2 @@
+To use this script you need to set the array size to the same value in both decipherMineMap and makeMineMap
+Once done you then run makeMineMap to generate the mine map text file. And after that you can run decipherMineMap.

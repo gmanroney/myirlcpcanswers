@@ -8,8 +8,8 @@ public class decipherMineMap {
 
         String mineMapOutFile = "/tmp/mineMapOutFile.txt";
         String mineMapInFile = "/tmp/mineMapInFile.txt";
-        int map_i = 60;
-        int map_j = 40;
+        int map_i = 1000;
+        int map_j = 1000;
         int cnt_i = 0;
         int cnt_j = 0;
         int mineCount = 0;

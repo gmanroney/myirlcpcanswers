@@ -12,9 +12,9 @@ public class makeMineMap {
 
     public static void main( String[] args ) throws FileNotFoundException {
 
-        int bombCount = 500;
-        int map_i = 60;
-        int map_j = 40;
+        int bombCount = 250000;
+        int map_i = 1000;
+        int map_j = 1000;
         String mapVal = "";
         String[][] mineMap = new String[map_i][map_j];
         String mineMapInFile = "/tmp/mineMapInFile.txt";
