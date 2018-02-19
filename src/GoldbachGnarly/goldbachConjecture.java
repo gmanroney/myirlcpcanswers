@@ -89,6 +89,8 @@ public class goldbachConjecture {
         }
         if (matchFound) {
             System.out.printf("Found match: %s value with %s pairings is %s", n_even, w_ways, matchValue);
+        } else {
+            System.out.printf("No value found.");
         }
 
     }
