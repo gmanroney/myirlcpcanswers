@@ -43,32 +43,52 @@ public class goldbachConjecture {
         int ways = 0;
         int min_val=0;
         int max_val=0;
-        Integer[][] pairHistory = new Integer[60][2];
+        int c_even=0;
+        boolean duplicateFound = false;
+        boolean matchFound = false;
+        int matchValue = 0;
 
-        for (int i=0; i< n_even; i++ ){
+        Integer[][] pairHistory = new Integer[600][2];
+
+        for (int i=0; i< 5000; i++ ){
             even_number = even_number + 2;
             ways=0;
-            for (int k=0; k<60; k++) {
+            for (int k=0; k<600; k++) {
                 pairHistory[k][0]=0;
                 pairHistory[k][1]=0;
             }
-            for ( int j=even_number; j>(even_number/2); j--) {
+            for ( int j=even_number-2; j>2; j--) {
                 remainder = even_number-j;
                 if ( isPrime(j) && isPrime (remainder)) {
-                    if (j<remainder) {
-                        min_val=j;
-                        max_val=remainder;
-                    } else {
-                        min_val=remainder;
-                        max_val=j;
+                    min_val=Math.min(j,remainder);
+                    max_val=Math.max(j,remainder);
+
+                    // check to see if value is in array
+                    duplicateFound=false;
+                    for ( int k = 0; k < pairHistory.length; k++ )
+                    {
+                        if (( pairHistory[k][0]==min_val) && ( pairHistory[k][1]==max_val)) duplicateFound=true;
                     }
-                    pairHistory[ways][0]=min_val;
-                    pairHistory[ways][1]=max_val;
- //                   System.out.printf(">>> %s %s\n", min_val, max_val);
-                    ways++;
+                    if ( ! duplicateFound ) {
+                        //System.out.printf(">>> %s %s\n", min_val, max_val);
+                        pairHistory[ways][0] = min_val;
+                        pairHistory[ways][1] = max_val;
+                        ways++;
+                    }
+                }
+            }
+            if ( ways == w_ways) {
+                c_even++;
+                if ( c_even == n_even )
+                {
+                    matchFound=true;
+                    matchValue = even_number;
                 }
             }
             System.out.printf("%s %s\n", even_number, ways);
+        }
+        if (matchFound) {
+            System.out.printf("Found match: %s value with %s pairings is %s", n_even, w_ways, matchValue);
         }
 
     }
