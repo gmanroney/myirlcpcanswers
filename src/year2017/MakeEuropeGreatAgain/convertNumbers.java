@@ -1,4 +1,4 @@
-package MakeEuropeGreatAgain;
+package year2017.MakeEuropeGreatAgain;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

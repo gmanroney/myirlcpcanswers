@@ -1,4 +1,4 @@
-package GoldbachGnarly;
+package year2017.GoldbachGnarly;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

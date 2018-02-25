@@ -1,4 +1,4 @@
-package PetePartialPasswordPilfer;
+package year2017.PetePartialPasswordPilfer;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
