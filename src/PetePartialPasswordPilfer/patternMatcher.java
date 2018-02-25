@@ -1,4 +1,4 @@
-package PatternMatcher;
+package PetePartialPasswordPilfer;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,8 +9,6 @@ public class patternMatcher {
     public static void main(String[] args) throws IOException {
 
         String numberInFile = "/tmp/patternmatcher.txt";
-
-        String[] config = new String[10];
         String[] nppValues = new String[10];
         String[] napValues = new String[10];
 
@@ -18,30 +16,37 @@ public class patternMatcher {
         BufferedReader br = new BufferedReader(fileReader);
 
         int npp = 0;
-        int nppCounter=0;
         int nap = 0;
-        int napConter=0;
-        int mainCounter=0;
+        int nf = 0;
+        int mainCounter=-1;
+        boolean firstLine=false;
 
         String line = br.readLine();
         while (line != null) {
-            if (mainCounter == 0) {
-                config = line.split(" ");
+            if ( ! firstLine) {
+                String[] config = line.split(" ");
                 npp = Integer.parseInt(config[0]);
-                nap = Integer.parseInt(config[0]);
+                nap = Integer.parseInt(config[1]);
+                firstLine=true;
             } else {
-                if (mainCounter > 0 && nppCounter < npp) {
-                    nppValues[nppCounter]=line;
-                    nppCounter++;
+                mainCounter++;
+                if ( mainCounter < npp) {
+                    nppValues[mainCounter]=line;
                 } else {
-                    napValues[napConter]=line;
-                    napConter++;
+                    napValues[mainCounter-npp]=line;
                 }
             }
-            mainCounter++;
             line = br.readLine();
         }
-    }
 
+        for (int i = 0; i < npp; i++ ) {
+            nf=0;
+            for (int j = 0; j < nap; j++ ) {
+                if ( napValues[j].toLowerCase().startsWith(nppValues[i].toLowerCase()) ) nf++;
+            }
+            System.out.printf("%s\n",nf);
+        }
+
+    }
 }
 
