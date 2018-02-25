@@ -8,45 +8,36 @@ public class reorderList {
 
     public static void main(String[] args) throws IOException {
 
-        String numberInFile = "/tmp/patternmatcher.txt";
-        String[] nppValues = new String[10];
-        String[] napValues = new String[10];
+        String numberInFile = "/tmp/reorderlist.txt";
 
         FileReader fileReader = new FileReader(numberInFile);
         BufferedReader br = new BufferedReader(fileReader);
 
-        int npp = 0;
-        int nap = 0;
-        int nf = 0;
+        int bookNum=0;
+        int[][] bookStats= new int[10][2];
+        int[][] bookSections = new int[10][2];
         int mainCounter=-1;
         boolean firstLine=false;
+        String[] linetmp = new String[2];
 
         String line = br.readLine();
         while (line != null) {
             if ( ! firstLine) {
-                String[] config = line.split(" ");
-                npp = Integer.parseInt(config[0]);
-                nap = Integer.parseInt(config[1]);
+                bookNum = Integer.parseInt(line);
                 firstLine=true;
             } else {
                 mainCounter++;
-                if ( mainCounter < npp) {
-                    nppValues[mainCounter]=line;
+                linetmp = line.split(" ");
+                if ( mainCounter < bookNum) {
+                    bookStats[0][mainCounter] = Integer.parseInt(linetmp[0]);
+                    bookStats[1][mainCounter] = Integer.parseInt(linetmp[1]);
                 } else {
-                    napValues[mainCounter-npp]=line;
+                    bookSections[mainCounter-bookNum][0] = Integer.parseInt(linetmp[0]);
+                    bookSections[mainCounter-bookNum][1] = Integer.parseInt(linetmp[1]);
                 }
             }
             line = br.readLine();
         }
-
-        for (int i = 0; i < npp; i++ ) {
-            nf=0;
-            for (int j = 0; j < nap; j++ ) {
-                if ( napValues[j].toLowerCase().startsWith(nppValues[i].toLowerCase()) ) nf++;
-            }
-            System.out.printf("%s\n",nf);
-        }
-
     }
 }
 
